@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruyi.dao.UserMapper">
+    <select id="getUserinfo" resultType="com.ruyi.Entity.User">
+        select * from User
+    </select>
+
+    <insert id="insetUserInfo" parameterType="User">
+        insert into
+        User(User_Id,User_name,User_sex,User_age,User_preference,User_medicalhistory,User_allergyhistory,User_password,User_phonenumber,User_email,User_head,User_note)
+        values(#{User_Id},#{User_name},#{User_sex},#{User_age},#{User_preference},#{User_medicalhistory},#{User_allergyhistory},#{User_password},#{User_phonenumber},#{User_email},#{User_head},#{User_note})
+    </insert>
+
+    <select id="getUserInfoByname" resultType="User">
+        select * from User where User_name = #{User_name}
+    </select>
+
+    <select id="getUserInfoById" resultType="User">
+        select * from User where User_Id = #{User_Id}
+    </select>
+
+    <update id="updateUserInfo" parameterType="User">
+        update user
+        set User_name=#{User_name},User_sex=#{User_sex},User_age=#{User_age},User_preference=#{User_preference},User_medicalhistory=#{User_medicalhistory},User_allergyhistory=#{User_allergyhistory},User_password=#{User_password},User_phonenumber=#{User_phonenumber},User_email=#{User_email},User_head=#{User_head},User_note=#{User_note}
+        where User_Id=#{User_Id}
+    </update>
+
+    <delete id="deleteUserInfo" parameterType="String">
+        delete from user where User_Id=#{User_Id}
+    </delete>
+</mapper>

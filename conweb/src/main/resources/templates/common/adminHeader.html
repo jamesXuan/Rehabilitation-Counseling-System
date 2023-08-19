@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<nav th:fragment="adminheader" class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li th:class="${active=='adminIndex'?'nav-link active':'nav-link'}"><a th:href="@{/adminIndex}">用户管理 <span class="sr-only">(current)</span></a></li>
+                <li th:class="${active=='manageIndex'?'nav-link active':'nav-link'}"><a th:href="@{/manageIndex}">管理员管理</a></li>
+                <li th:class="${active=='answerIndex'?'nav-link active':'nav-link'}"><a th:href="@{/answerIndex}">答案模板</a></li>
+                <li th:class="${active=='questionIndex'?'nav-link active':'nav-link'}"><a th:href="@{/questionIndex}">问题模板</a></li>
+                <li th:class="${active=='articleIndex'?'nav-link active':'nav-link'}"><a th:href="@{/articleIndex}">文章发布</a></li>
+                <li th:class="${active=='welcomeIndex'?'nav-link active':'nav-link'}"><a th:href="@{/welcomeIndex}">页面定制</a></li>
+                <li th:class="${active=='historyIndex'?'nav-link active':'nav-link'}"><a th:href="@{/historyIndex}">咨询记录</a></li>
+                <li th:class="${active=='writeArticle'?'nav-link active':'nav-link'}"><a th:href="@{/admin/towriteArticle}">写文章</a></li>
+                <li th:class="${active=='importdata'?'nav-link active':'nav-link'}"><a th:href="@{/importdata}">数据导入</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">网站数据</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="page-header">
+                <h1>
+                    <small>用户注册</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+<form th:action="@{/register}" method="post">
+
+    <div class="form-group">
+        <label>用户名：</label>
+        <input type="text" class="form-control" name="User_name" required >
+        <p style="color: red" th:text="${usermsg}" th:if="${not #strings.isEmpty(usermsg)}"></p>
+    </div>
+    <div class="form-group">
+        <label>密码：</label>
+        <input type="password" class="form-control" name="User_password" placeholder="必须包含大小写字母和数字的组合，不能使用特殊字符，长度在8-10之间" required>
+        <p style="color: red" th:text="${psdmsg}" th:if="${not #strings.isEmpty(psdmsg)}"></p>
+    </div>
+    <div class="form-group">
+        <label>性别：</label>
+        <input type="radio" value="男" name="User_sex" checked/>男
+        <input type="radio" value="女" name="User_sex"/>女
+    </div>
+    <div class="form-group">
+        <label>年龄：</label>
+        <input type="number" name ="User_age" max="120" min="1" step="1" required>
+    </div>
+    <div class="form-group">
+        <label>Tel：</label>
+        <input type="text" class="form-control" name="User_phonenumber" required>
+        <p style="color: red" th:text="${phonemsg}" th:if="${not #strings.isEmpty(phonemsg)}"></p>
+    </div>
+    <div class="form-group">
+        <label>Email：</label>
+        <input type="text" class="form-control" name="User_email" required>
+        <p style="color: red" th:text="${emailmsg}" th:if="${not #strings.isEmpty(emailmsg)}"></p>
+    </div>
+    <div class="form-group">
+        <label>偏好：</label>
+        <textarea class="form-control" name="User_preference" cols="50" rows="5"></textarea>
+    </div>
+    <div class="form-group">
+        <label>疾病史：</label>
+        <textarea class="form-control" name="User_medicalhistory" cols="50" rows="5"></textarea>
+    </div>
+    <div class="form-group">
+        <label>过敏源：</label>
+        <textarea class="form-control" name="User_allergyhistory" cols="50" rows="5"></textarea>
+    </div>
+    <div class="form-group">
+        <label>note：</label>
+        <textarea class="form-control" name="User_note" cols="50" rows="5"></textarea>
+    </div>
+    <div class="form-group">
+        <input type="submit" class="form-control" value="注册">
+    </div>
+</form>
+</div>>
+</body>
+</html>

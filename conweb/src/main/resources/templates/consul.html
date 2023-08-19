@@ -1,0 +1,280 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"><!--begin::Head-->
+<head>
+    <meta charset="UTF-8" >
+    <link href="css/style.bundle.css" rel="stylesheet" type="text/css">
+    <script th:src="@{/js/jquery/jquery-2.2.4.min.js}"></script>
+    <title>咨询</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <script th:src="@{/js/jquery/jquery-2.2.4.min.js}"></script>
+    <script th:src="@{js/base.js}" type="text/javascript"></script>
+    <script src="js/jquery.slides.min.js" type="text/javascript"></script>
+    <script src="js/popper.min.js"></script>
+</head>
+
+<!--begin::Body-->
+<body>
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="d-flex flex-row flex-column-fluid page content-img d-flex flex-row-fluid bgi-no-repeat bgi-position-y-bottom bgi-position-x-center" >
+        <!--begin::Wrapper-->
+        <div class="d-flex flex-column flex-row-fluid wrapper pt-50px" id="kt_wrapper">
+            <!--begin::Header-->
+<!--            <div id="kt_header" class="header header-fixed" style="background-color: rgba(255, 255, 255, 0.5);" kt-hidden-height="65">-->
+<!--                &lt;!&ndash;begin::Container&ndash;&gt;-->
+<!--                <div class="container-fluid d-flex align-items-stretch justify-content-between">-->
+<!--                    &lt;!&ndash;begin::Header Menu Wrapper&ndash;&gt;-->
+<!--                    <div class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">-->
+<!--                        &lt;!&ndash;begin::Header Logo&ndash;&gt;-->
+<!--                        <div class="header-logo">-->
+<!--                            <a th:href="@{index}">-->
+<!--                                <p>首页</p>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash;end::Header Logo&ndash;&gt;-->
+<!--                        &lt;!&ndash;begin::Header Menu&ndash;&gt;-->
+<!--                        <div id="kt_header_menu" class="header-menu header-menu-mobile header-menu-layout-default">-->
+<!--                            &lt;!&ndash;begin::Header Nav&ndash;&gt;-->
+<!--                            &lt;!&ndash;end::Header Nav&ndash;&gt;-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash;end::Header Menu&ndash;&gt;-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash;end::Header Menu Wrapper&ndash;&gt;-->
+<!--                    &lt;!&ndash;begin::Topbar&ndash;&gt;-->
+<!--                    <div class="topbar">-->
+<!--                        &lt;!&ndash;begin::User&ndash;&gt;-->
+<!--                        <div class="topbar-item">-->
+<!--                            <div class="btn-icon btn-icon-mobile btn-clean d-flex align-items-center btn-lg px-2">-->
+<!--                                <span class="font-weight-bold font-size-base d-md-inline mr-1">在线：</span>-->
+<!--                                <span id="text-online-count" class="font-weight-bolder font-size-base d-md-inline mr-3">683人</span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash;end::User&ndash;&gt;-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash;end::Topbar&ndash;&gt;-->
+<!--                </div>-->
+<!--                &lt;!&ndash;end::Container&ndash;&gt;-->
+<!--            </div>-->
+<!--            &lt;!&ndash;end::Header&ndash;&gt;-->
+<div th:replace="~{common/UserHeader::header(active='consult')}"></div>
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::IndexEntry-->
+                <div id="kt_chat_entry" class="">
+                    <div class="d-flex flex-column-fluid">
+                        <!--begin::Container-->
+                        <div class="container">
+                            <!--begin::Chat-->
+                            <div class="d-flex flex-row">
+                                <!--begin::Aside-->
+                                <div class="flex-row-auto offcanvas-mobile w-300px offcanvas-mobile-on" id="kt_profile_aside">
+                                    <!--begin::Profile Card-->
+                                    <div class="card card-custom card-stretch" style="background-color: rgba(255, 255, 255, 0.95)">
+                                        <!--begin::Body-->
+                                        <div class="card-body pt-12">
+                                            <!--begin::User-->
+                                            <div class="d-flex align-items-center">
+                                                <div class="flex-grow-1"></div>
+                                                <div class="symbol symbol-60 symbol-xxl-100 mr-5 align-self-start align-self-xxl-center">
+                                                    <div class="symbol-label user-profile-avatar-image" th:style="'background-image: url(./img/img.png);'"></div>
+                                                    <!-- <i class="symbol-badge bg-success"></i> -->
+                                                </div>
+                                                <div class="flex-grow-1"></div>
+                                            </div>
+                                            <!--end::User-->
+                                            <!--begin::Contact-->
+                                            <div class="py-9">
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                                    <span class="font-weight-bold mr-2" style="color: black">名称</span>
+                                                    <span class="text-muted user-profile-gender-text">王医生</span>
+                                                </div>
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                                    <span class="font-weight-bold mr-2" style="color: black">擅长</span>
+                                                    <span class="text-muted user-profile-age-text">骨科</span>
+                                                </div>
+                                                <div class="d-flex align-items-center justify-content-between">
+                                                    <span class="font-weight-bold mr-2" style="color: black">用户评分</span>
+                                                    <span class="text-muted user-profile-location-text">5.0</span>
+                                                </div>
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                                    <span class="font-weight-bold mr-2" style="color: black">姓名</span>
+                                                    <span class="user-profile-mole-text display-4 text-warning" th:text="${user.getUser_name()}" id="username"><b></b></span>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-md-center justify-content-center" >
+                                                <button  class="btn btn-hover-bg-dark btn-text-dark btn-hover-text-white border-0 font-weight-bold mr-2" data-stranger-operate="report" name="User_medicalhistory" id="userhistory">病史</button>
+                                                <button  class="btn btn-hover-bg-dark btn-text-dark btn-hover-text-white border-0 font-weight-bold mr-2" data-stranger-operate="keep-contact" name="User_allergyhisyory" id="userallergy">过敏源</button>
+                                                <button  class="btn btn-hover-bg-dark btn-text-dark btn-hover-text-white border-0 font-weight-bold mr-2" data-stranger-operate="block" name="User_preference" id="userprefer">偏好</button>
+                                                <script>
+                                                    $('button[id^="user"]').click(function (e){
+                                                        var vaule = $(e.target).attr('name')
+                                                        var str = $('#username').text();
+                                                        console.log(str)
+                                                        $.ajax({
+                                                            async: true,
+                                                            cache: false,
+                                                            type: 'post',
+                                                            url: '/info',
+                                                            data:{'User_name':str},
+                                                            success:function (user){
+                                                                if(vaule==='User_medicalhistory')
+                                                                    $('#userinfo').text(user['user_medicalhistory'])
+                                                                else if (vaule==='User_allergyhisyory')
+                                                                    $('#userinfo').text(user['user_allergyhistory'])
+                                                                else if(vaule==='User_preference')
+                                                                    $('#userinfo').text(user['user_preference'])
+                                                                else
+                                                                    console.log(error)
+
+                                                            }
+                                                        });
+                                                    });
+                                                </script>
+                                            </div>
+                                            <div class="scroll scroll-pull ps py-9"style="height: 250px;overflow: auto;" data-mobile-height="300">
+                                            <div class=" panel panel-default">
+                                                <div class="panel-body" id="user_info">
+                                                    <p style="color: black" id="userinfo"></p>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            <!--end::Contact-->
+                                        </div>
+                                        <!--end::Body-->
+                                    </div>
+                                    <!--end::Profile Card-->
+                                </div><div class="offcanvas-mobile-overlay"></div>
+                                <!--end::Aside-->
+                                <!--begin::Content-->
+                                <div class="flex-row-fluid ml-lg-8" id="kt_chat_content">
+                                    <!--begin::Card-->
+                                    <div class="card card-custom card-stretch" style="background-color: rgba(255, 255, 255, 0.95)">
+                                        <!--begin::Header-->
+                                        <div class="card-header align-items-center px-4 py-3">
+                                            <div class="text-left flex-grow-1">
+                                                <!--begin::Aside Mobile Toggle-->
+                                                <button class="btn btn-primary text-uppercase font-weight-bold py-2 px-6 chat-operate mr-2" style="float:right" id="save">保存咨询记录</button>
+                                                <script>
+                                                    $('#save').click(function (e){
+                                                        var data=$('#username').text();
+                                                        alert("正在保存")
+                                                        $.ajax({
+                                                            async:true,
+                                                            cache:false,
+                                                            type:'get',
+                                                            url:'/saveRecord',
+                                                            data:{'data':data},
+                                                            success:function (){
+                                                                    alert("保存成功！")
+                                                            }
+                                                        });
+                                                    });
+                                                </script>
+                                                <!--end::Aside Mobile Toggle-->
+                                            </div>
+                                        </div>
+                                        <!--end::Header-->
+                                        <!--begin::Body-->
+                                        <div class="card-body pb-0">
+                                            <!--begin::Scroll-->
+                                            <div class="scroll scroll-pull ps" data-mobile-height="300" style="height: 300px; overflow: auto;">
+                                                <div class="message">
+                                                    <div class="d-flex flex-column mb-5 align-items-start " >
+                                                        <div class="mt-2 rounded p-5 bg-light-success font-weight-bold font-size-lg text-left max-w-800px text-primary">
+                                                            <p id="ques" th:text="${msg.getQues()}"></p>
+                                                        </div></div>
+                                                    <div class="d-flex flex-column mb-5 align-items-end" >
+
+                                                        <div class="mt-2 rounded p-5 bg-light-primary font-weight-bold font-size-lg max-w-800px text-primary" >
+                                                        <p id="answ" th:text="${msg.getAnsw()}"></p>
+                                                    </div></div>
+                                                </div>
+                                            </div>
+                                            <!--end::Scroll-->
+                                            <p class="typing text-dark-50 mb-1 font-size-xs invisible">对方正在输入...</p>
+                                        </div>
+                                        <!--end::Body-->
+                                        <!--begin::Footer-->
+                                        <div id="kt_chat_match_dropzone" class="card-footer pt-0 pb-2">
+                                            <!--begin::Compose-->
+                                            <div class="d-flex justify-content-start mb-1 mt-1">
+                                                <div class="mr-3 chat-toolbar">
+                                                    <!--缺选择表情和上传图片的icon-->
+                                                    <a href="javascript:void(0);" title="" class="btn btn-clean btn-icon mr-1 disabled" data-toggle="popover-expression" data-original-title="选择表情">
+                                                        <i class="icon-search"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" title="上传图片" class="btn btn-clean btn-icon mr-1 dropzone-select dz-clickable disabled">
+                                                        <i class="icon-search"></i>
+                                                        <div class="d-none dropzone-items"></div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <textarea id="kt_input_message" class="form-control border-1 p-1" rows="5" placeholder="输入新消息（按住Shift键后，再按Enter键可以进行换行）" data-operate-type="SELF_MESSAGE" ></textarea>
+                                            <div class="d-flex justify-content-end mt-5">
+                                                    <button type="button" class="btn btn-primary text-uppercase font-weight-bold py-2 px-6 chat-operate mr-2" id="send_button" data-operate="enter">发送</button>
+                                                <script>
+                                                    $('#send_button').click(function (){
+                                                        var str=$('#kt_input_message').val()
+                                                        var xml=new XMLHttpRequest();
+                                                        console.log(str)
+                                                        $.ajax({
+                                                           async:true,
+                                                           cache:false,
+                                                           type:'post',
+                                                           url:'/consul',
+                                                           data:{'getContext':str},
+                                                           success:function (msg){
+                                                               $('#kt_input_message').val("")
+                                                               var html ='';
+                                                               // $.each(msg,function (i,value){
+                                                               //     html +="<div class=\"d-flex flex-column mb-5 align-items-start \" >\n" +
+                                                               //         "                                                        <div class=\"mt-2 rounded p-5 bg-light-success font-weight-bold font-size-lg text-left max-w-800px text-primary\">\n" +
+                                                               //         "                                                            <p id=\"ques\" >"+value['ques']+"</p>\n" +
+                                                               //         "                                                        </div></div>"
+                                                               //     html+="<div class=\"d-flex flex-column mb-5 align-items-end\" >\n" +
+                                                               //         "                                                        <div class=\"mt-2 rounded p-5 bg-light-primary font-weight-bold font-size-lg max-w-800px text-primary\" >\n" +
+                                                               //         "                                                        <p id=\"answ\" >"+value['answ']+"</p>\n" +
+                                                               //         "                                                    </div></div>"
+                                                               // console.log(value['answ'])
+                                                               // });
+                                                                   html +="<div class=\"d-flex flex-column mb-5 align-items-start \" >\n" +
+                                                                       "                                                        <div class=\"mt-2 rounded p-5 bg-light-success font-weight-bold font-size-lg text-left max-w-800px text-primary\">\n" +
+                                                                       "                                                            <p id=\"ques\" >"+msg['ques']+"</p>\n" +
+                                                                       "                                                        </div></div>"
+                                                                   html+="<div class=\"d-flex flex-column mb-5 align-items-end\" >\n" +
+                                                                       "                                                        <div class=\"mt-2 rounded p-5 bg-light-primary font-weight-bold font-size-lg max-w-800px text-primary\" >\n" +
+                                                                       "                                                        <p id=\"answ\" >"+msg['answ']+"</p>\n" +
+                                                                       "                                                    </div></div>"
+                                                               //$('.message').html(html)
+                                                               $('.message').append(html)
+                                                           }
+                                                        });
+
+
+
+                                                    });
+                                                </script>
+                                            </div>
+                                            <!--begin::Compose-->
+                                        </div>
+                                        <!--end::Footer-->
+                                    </div>
+                                    <!--end::Card-->
+                                </div>
+                                <!--end::Content-->
+                            </div>
+                            <!--end::Chat-->
+
+                        </div>
+                        <!--end::Container-->
+                    </div>
+                </div>
+                <!--end::ChatEntry-->
+            </div>
+
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+
+</body></html>

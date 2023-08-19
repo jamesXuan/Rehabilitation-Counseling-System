@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script th:src="@{/js/jquery/jquery-2.2.4.min.js}"></script>
+</head>
+<body>
+<div th:replace="~{common/adminHeader::adminheader(active='importdata')}"></div>
+<div class="row">
+    <div class="col-md-1 column" th:each="typ:${type}">
+        <button class="btn btn-primary" th:text="${typ}" style="text-align: center;width: 100px;"></button>
+    </div>
+    <script>
+        $("button").click(function (e){
+            var label = $(e.target).text();
+            alert(label)
+            $('#Properties').empty();
+            $('#relation').empty();
+            $.ajax({
+                async: true,
+                cache: false,
+                type: 'post',
+                url: '/getdisease',
+                data:{'Entity_type':label},
+                success:function (obj){
+                    console.log(obj);
+                    var html_one ='';
+                    var html_two ='';
+                    var flag=1;//flag==1接收实体属性属性值三元组        flag==2接收实体关系实体三元组
+                    $.each(obj,function (i,value){
+                        if(flag===2){
+                            html_two +="<tr>\n" +
+                                "                <td>"+value['headEntity']+"</td>\n" +
+                                "                <td>"+value['relation']+"</td>\n" +
+                                "                <td>"+value['tailEntity']+"</td>\n" +
+                                "            </tr>"
+                        }
+                        if(value['tailEntity']===""){
+                                flag=2;
+
+                        }
+                        if(flag===1){
+                            html_one +="<tr>\n" +
+                            "                <td>"+value['headEntity']+"</td>\n" +
+                            "                <td>"+value['tailEntity']+"</td>\n" +
+                            "                <td>"+value['relation']+"</td>\n" +
+                            "            </tr>"
+                        }
+                    });
+                    $('#Properties').append(html_one);
+                    $('#relation').append(html_two);
+
+                }
+            });
+        });
+    </script>
+<!--    <div class="col-md-2 column">-->
+<!--        <form method="post" action="#" style="float: right">-->
+<!--            <input  class="column-resize-line" type="text" placeholder="请输入要查询的用户名称" name="username">-->
+<!--            <input type="submit" value="查询" class="btn btn-primary">-->
+<!--        </form>-->
+<!--    </div>-->
+</div>
+<div class="row clearfix">
+    <div class="col-md-8 column" style="margin-top: 30px">
+        <form method="post" th:action="@{/addTriadsinfo}" style="float: right">
+            <input  class="column-resize-line" type="text" placeholder="实体" name="entity1">
+            <input  class="column-resize-line" type="text" placeholder="关系/属性" name="rel">
+            <input  class="column-resize-line" type="text" placeholder="实体/属性值" name="entity2">
+            <input type="submit" value="添加" class="btn btn-primary">
+        </form>
+    </div>
+</div>
+<div class="row clearfix" style="margin-top: 20px">
+    <div class="col-md-6 column">
+        <p style="text-align: center;font-weight: bold;font-size: 20px">属性三元组</p>
+        <table class="table table-hover table-striped">
+            <thead>
+            <tr>
+                <th>实体</th>
+                <th>属性</th>
+                <th>属性值</th>
+            </tr>
+            </thead>
+
+            <tbody id="Properties">
+            <tr>
+                <td>疾病</td>
+                <td>简介</td>
+                <td>内容</td>
+            </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6 column">
+        <p style="text-align: center;font-weight: bold;font-size: 20px">关系三元组</p>
+        <table class="table table-hover table-striped">
+            <thead>
+            <tr>
+                <th>实体</th>
+                <th>关系</th>
+                <th>实体</th>
+            </tr>
+            </thead>
+
+            <tbody id="relation">
+            <tr>
+                <td>疾病</td>
+                <td>属于</td>
+                <td>科室</td>
+            </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+</body>
+</html>

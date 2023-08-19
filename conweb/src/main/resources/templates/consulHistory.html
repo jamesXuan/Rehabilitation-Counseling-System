@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Title  -->
+    <title>article</title>
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="style.css">
+    <script th:src="@{/js/jquery/jquery-2.2.4.min.js}"></script>
+</head>
+<body>
+<!---->
+<!--<div th:replace="~{common/UserHeader}"></div>-->
+<div class="article_box clearfix">
+    <div class="left">
+
+        <div class="article_content_box clearfix">
+
+            <div class="article_article_title">
+                <h3>咨询记录
+                    <span>您当前的位置：<a th:href="@{index}">首页></a><a href="#">列表页></a><a href="#">内容页</a></span>
+                </h3>
+            </div>
+
+<!--            <div  th:if="${type eq '1'}" class="article_content_title" th:utext="颈椎病"></div>-->
+<!--            <div  th:if="${type eq '2'}" class="article_content_title" th:utext="年轻运动员腰背痛"></div>-->
+<!--            <div class="article_author_count_box clearfix">-->
+<!--                <i class="article_author_img" ><img src="./img/img.png" alt= "这是一张图片"></i>-->
+<!--&lt;!&ndash;                <p th:utext="${'时间：2022-06-13'}"></p><p th:utext="${'浏览次数：60'}"></p>&ndash;&gt;-->
+<!--            </div>-->
+            <div th:if="${type eq '1'}" class="article_content">
+                <p style="font-size: 18px" th:utext="${'患者：你好，医生，我最近颈椎有点不舒服，又酸又疼，都不太敢低头。'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'医生：出现这个症状多久了'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'患者：已经也偶尔出现过，最近持续一周左右了'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'医生：为你能更好的分析病情，我们得了解下你的基本情况。性别以及年龄。'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'患者：30，男'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'医生：有做过相关检查吗？'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'患者：没有'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'医生：平时是否有头疼、头晕、恶心、耳鸣、手麻、肩膀痛等症状'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'患者：胳膊和肩膀偶尔会疼'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'医生：平时工作久坐或者低头吗'}" ></p><br>
+                <p style="font-size: 18px" th:utext="${'患者：久坐，一般每天要坐着八小时，也经常低头。'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'医生：颈椎痛疼是会延伸到肩膀的，之前有出现过这种情况吗？'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'患者：有，但之前持续的时间都不长。'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'医生：那之前有吃药治疗过吗？'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'患者：没有，之前很快就好了'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'医生：初步判断您是长期久坐低头引发的颈椎病，从你的情况来看目前症状较轻，通过治疗是完全可以恢复的。'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'患者：那医生我现在可以用哪些药来缓解这种疼痛呢？'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'医生：可选择性应用止痛剂、镇静剂、维生素（如B1、B12），对症状的缓解有一定的效果。可尝试使用硫酸氨基葡萄糖和硫酸软骨素进行支持治疗。但具体的还是腰经过当面诊断才能确定，希望您尽快就医。'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'患者：好的，谢谢医生。'}"></p><br>
+                <img src="img/hero1.jpg">
+            </div>
+            <div th:if="${type eq '2'}" class="article_content">
+                <p style="font-size: 18px" th:utext="${'患者： 你好，医生，我最近腰背有点酸疼，晚上睡觉翻身的时候都会痛。'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'医生： 这种情况持续多久了'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'患者： 大概一个星期左右吧，以前也偶尔有过，不过不严重，几天就好了。'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'医生： 多大了，做什么工作的。'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'患者：25了，男，我是一名跳高运动员'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'医生： 练跳高多久了？接触跳高之前有过这种情况吗？'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'患者： 练跳高一年多了吧，之前没有出现过这种症状。'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'医生： 初步判断是年轻运动员腰背痛，通常是由于椎弓根峡部损伤。脊柱前凸性腰背痛。肌肉扭伤或劳损。具体原因还需进一步了解确定。'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'患者： 那医生，我如果去医院挂什么科室？'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'医生： 可以挂物理医学与康复科。神经外科或脊柱外科。'}" ></p><br>
+                <p style="font-size: 18px" th:utext="${'患者： 医生，我这种情况能得到有效的治疗吗？'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'医生： 可以的，放心。通过热疗、冷疗、超声波和经皮神经电刺激可以有效缓解和治疗这种腰背疼。'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'患者： 好的，谢谢医生'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'医生： 不过你的运动强度要降低，在治疗期间尽量停止训练，身体最重要。'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'患者： 好的，我尽量。医生，现在有什么方法可以缓解疼痛吗？'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'医生： 当感觉疼痛剧烈时，可以服用止痛药，让疼痛症状尽快缓解；还可以对症应用抗生素、营养软骨药等西药进行治疗。也可以服用舒筋通络、补肝肾、温经散寒的中药进行调理，也可缓解腰疼症状。'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'患者：好的，谢谢医生。'}"></p><br>
+                <img src="img/hero1.jpg">
+            </div>
+
+            <div th:if="${type eq '3'}" class="article_content">
+                <div class="questionandanswer" th:each="msg:${coninfo}">
+                    <p style="font-size: 18px" class="question" th:utext="'患者：'+${msg.getQues()}"></p><br>
+                    <p style="font-size: 18px" class="answer" th:utext="'医生：'+${msg.getAnsw()}"></p><br>
+                </div>
+                <img src="img/hero1.jpg">
+            </div>
+        </div>
+
+
+
+    </div>
+<!--    <div th:replace="~{common/sidebar::side}"></div>-->
+</div>
+</body>
+</html>

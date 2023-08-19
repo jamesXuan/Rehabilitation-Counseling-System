@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!--新增答案-->
+<div class="container" th:if="${type=='answer'}">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="page-header">
+                <h1>
+                    <small>答案编写</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+    <form th:action="@{/addAdmin(type='answer')}" method="post">
+
+        <div class="form-group">
+            <label>答案类别：</label>
+            <input type="text" class="form-control" name="Answer_type" required >
+        </div>
+        <div class="form-group">
+            <label>答案内容：</label>
+            <input type="text" class="form-control" name="Answer_example"  required>
+        </div>
+        <div class="form-group">
+            <label>答案风格：</label>
+            <input type="text" class="form-control" name="Answer_style"  required>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="form-control" value="确定">
+        </div>
+    </form>
+</div>
+<!--新增问题-->
+<div class="container" th:if="${type=='question'}">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="page-header">
+                <h1>
+                    <small>问题模板编写</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+    <form th:action="@{/addAdmin(type='question')}" method="post">
+
+        <div class="form-group">
+            <label>问题类别：</label>
+            <input type="text" class="form-control" name="Question_type" required >
+        </div>
+        <div class="form-group">
+            <label>问题特征词：</label>
+            <input type="text" class="form-control" name="Question_feature"  required>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="form-control" value="确定">
+        </div>
+    </form>
+</div>
+<!--新增文章-->
+<div class="container" th:if="${type=='article'}">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="page-header">
+                <h1>
+                    <small>文章编写</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+    <form th:action="@{/addAdmin(type='article')}" method="post">
+
+        <div class="form-group">
+            <label>文章类型：</label>
+            <input type="text" class="form-control" name="Article_type" required >
+        </div>
+        <div class="form-group">
+            <label>文章标题：</label>
+            <input type="text" class="form-control" name="Article_title"  required>
+        </div>
+        <div class="form-group">
+            <label>文章作者：</label>
+            <input type="text" class="form-control" name="Article_author"  required>
+        </div>
+        <div class="form-group">
+            <label>文章内容：</label>
+            <textarea  class="form-control" name="Article_context" rows="15" cols="50" required></textarea>
+        </div>
+        <div class="form-group">
+            <label>文章图片：</label>
+            <input type="text" class="form-control" name="Article_img"  required>
+        </div>
+        <div class="form-group">
+            <label>文章备注：</label>
+            <input type="text" class="form-control" name="Article_note"  required>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="form-control" value="确定">
+        </div>
+    </form>
+</div>
+<!--新增欢迎页-->
+<div class="container" th:if="${type=='welcome'}">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="page-header">
+                <h1>
+                    <small>欢迎页面模板编写</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+    <form th:action="@{/addAdmin(type='welcome')}" method="post">
+
+        <div class="form-group">
+            <label>主标题：</label>
+            <input type="text" class="form-control" name="Welcome_titleone" required >
+        </div>
+        <div class="form-group">
+            <label>次标题：</label>
+            <input type="text" class="form-control" name="Welcome_titletwo"  required>
+        </div>
+        <div class="form-group">
+            <label>文本内容：</label>
+            <input type="text" class="form-control" name="Welcome_context"  required>
+        </div>
+        <div class="form-group">
+            <label>图片：</label>
+            <input type="text" class="form-control" name="Welcome_img"  required>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="form-control" value="确定">
+        </div>
+    </form>
+</div>
+</body>
+</html>

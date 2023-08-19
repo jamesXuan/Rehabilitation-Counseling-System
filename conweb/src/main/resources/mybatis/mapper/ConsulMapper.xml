@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruyi.dao.ConsulMapper">
+    <select id="getConsulinfo" resultType="Consul">
+        select * from consultrecord
+    </select>
+
+    <select id="getConsulInfoBytopic" resultType="consul">
+        select * from consultrecord where Record_topic=#{Record_topic}
+    </select>
+
+    <select id="getConsulInfoById" resultType="consul">
+        select * from consultrecord where Record_Id=#{Record_Id}
+    </select>
+
+    <delete id="deleteConsulInfo" parameterType="String">
+        delete from consultrecord where Record_Id=#{Record_Id}
+    </delete>
+
+    <insert id="addConsulInfo" parameterType="consul">
+        insert into consultrecord(Record_Id,User_Id,Record_Time,Record_topic,Record_context,Record_title,Record_img,Record_note)
+        values(#{Record_Id},#{User_Id},#{Record_Time},#{Record_topic},#{Record_context},#{Record_title},#{Record_img},#{Record_note})
+    </insert>
+
+    <select id="getConsulInfoBytitle" resultType="consul">
+        select * from consultrecord where Record_title=#{Record_title}
+    </select>
+</mapper>

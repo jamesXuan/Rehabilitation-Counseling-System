@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<!--<nav class="navbar navbar-default">-->
+<!--    <div class="container-fluid">-->
+<!--        &lt;!&ndash; Brand and toggle get grouped for better mobile display &ndash;&gt;-->
+<!--        <div class="navbar-header">-->
+<!--            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">-->
+<!--                <span class="sr-only">Toggle navigation</span>-->
+<!--                <span class="icon-bar"></span>-->
+<!--                <span class="icon-bar"></span>-->
+<!--                <span class="icon-bar"></span>-->
+<!--            </button>-->
+<!--            <a class="navbar-brand" href="#">首页</a>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Collect the nav links, forms, and other content for toggling &ndash;&gt;-->
+<!--        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+<!--            <ul class="nav navbar-nav">-->
+<!--                <li class="active"><a th:href="@{/adminIndex}">用户管理 <span class="sr-only">(current)</span></a></li>-->
+<!--                <li><a th:href="@{/manageIndex}">管理员管理</a></li>-->
+<!--                <li><a th:href="@{/answerIndex}">答案模板</a></li>-->
+<!--                <li><a th:href="@{/questionIndex}">问题模板</a></li>-->
+<!--                <li><a th:href="@{/articleIndex}">文章发布</a></li>-->
+<!--                <li><a th:href="@{/welcomeIndex}">页面定制</a></li>-->
+<!--                <li><a th:href="@{/historyIndex}">咨询记录</a></li>-->
+<!--                <li><a th:href="@{/importdata}">数据导入</a></li>-->
+<!--            </ul>-->
+<!--            <ul class="nav navbar-nav navbar-right">-->
+<!--                <li><a href="#">网站数据</a></li>-->
+<!--            </ul>-->
+<!--        </div>&lt;!&ndash; /.navbar-collapse &ndash;&gt;-->
+<!--    </div>&lt;!&ndash; /.container-fluid &ndash;&gt;-->
+<!--</nav>-->
+<div th:replace="~{common/adminHeader::adminheader(active='historyIndex')}"></div>
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        <table class="table table-hover table-striped">
+            <thead>
+            <tr>
+                <th>记录Id</th>
+                <th>用户Id</th>
+                <th>咨询时间</th>
+                <th>咨询主题</th>
+                <th>咨询内容</th>
+                <th>咨询标题</th>
+                <th>咨询图片</th>
+                <th>备注</th>
+            </tr>
+            </thead>
+
+            <tbody th:each="con:${conlist}">
+            <tr>
+                <td th:text="${con.getRecord_Id()}"></td>
+                <td th:text="${con.getUser_Id()}"></td>
+                <td th:text="${con.getRecord_Time()}"></td>
+                <td th:text="${con.getRecord_topic()}"></td>
+                <td th:text="${con.getRecord_context()}"></td>
+                <td th:text="${con.getRecord_title()}"></td>
+                <td th:text="${con.getRecord_img()}"></td>
+                <td th:text="${con.getRecord_note()}"></td>
+                <td>
+                    <a th:href="@{/deletehistory(Record_Id=${con.getRecord_Id()})}">删除</a>
+                </td>
+            </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

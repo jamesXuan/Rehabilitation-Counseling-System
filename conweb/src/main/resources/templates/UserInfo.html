@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="page-header">
+                <h1>
+                    <small>用户信息</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+    <form method="post" th:action="@{/touserupdate(User_name=${User.getUser_name()})}">
+        <input type="hidden" name="User_Id" th:value="${User.getUser_Id()}">
+        <div class="form-group">
+            <p><label>用户名：</label>
+                <big th:text="${User.getUser_name()}"></big>
+            </p>
+        </div>
+        <div class="form-group">
+            <p><label>密&nbsp;&nbsp;码：</label>
+                <input  type="text" th:value="${User.getUser_password()}" name="User_password"/>
+            </p>
+        </div>
+        <div class="form-group">
+            <p>
+            <label>性别：</label>
+            <input type="radio" value="男" name="User_sex" checked/>男
+            <input type="radio" value="女" name="User_sex"/>女
+            </p>
+        </div>
+        <div class="form-group">
+            <p>
+            <label>年龄：</label>
+            <input type="number" name ="User_age" max="120" min="1" step="1" required th:value="${User.getUser_age()}">
+            </p>
+        </div>
+        <div class="form-group">
+            <p>
+            <label>Tel：</label>
+            <input type="text"  name="User_phonenumber" required th:value="${User.getUser_phonenumber()}" >
+            </p>
+        </div>
+        <div class="form-group">
+            <p>
+                <label>Email：</label>
+                <input type="text"  name="User_email" required th:value="${User.getUser_email()}" >
+            </p>
+        </div>
+        <div class="form-group">
+            <label>偏好：</label>
+            <textarea class="form-control" name="User_preference" cols="50" rows="5" th:text="${User.getUser_preference()}"></textarea>
+        </div>
+        <div class="form-group">
+            <label>疾病史：</label>
+            <textarea class="form-control" name="User_medicalhistory" cols="50" rows="5" th:text="${User.getUser_medicalhistory()}"></textarea>
+        </div>
+        <div class="form-group">
+            <label>过敏源：</label>
+            <textarea class="form-control" name="User_allergyhistory" cols="50" rows="5" th:text="${User.getUser_allergyhistory()}" ></textarea>
+        </div>
+        <div class="form-group">
+            <label>note：</label>
+            <textarea class="form-control" name="User_note" cols="50" rows="5" th:text="${User.getUser_note()}"></textarea>
+        </div>
+        <div class="form-group">
+            <p style="text-align: center">
+            <input value="确定" type="submit"/>
+            <a th:href="@{/index}"><input value="返回" type="button"/></a>
+            </p>
+        </div>
+    </form>
+</div>>
+</body>
+</html>

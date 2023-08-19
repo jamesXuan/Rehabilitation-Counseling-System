@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Title  -->
+    <title>article</title>
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="style.css">
+    <script th:src="@{/js/jquery/jquery-2.2.4.min.js}"></script>
+</head>
+
+<body>
+<!--<header class="header-area" th:fragment="headerbar">-->
+<!--    &lt;!&ndash; Main Header Area &ndash;&gt;-->
+<!--    <div id="stickyHeader-sticky-wrapper" class="sticky-wrapper is-sticky" style="height: 101px;"><div class="main-header-area"  style="width: 1600px; z-index: inherit;background-color: #8f9599">-->
+<!--        <div class="container h-100">-->
+<!--            <div class="row h-100 align-items-center">-->
+<!--                <div class="col-12 h-100">-->
+<!--                    <div class="main-menu h-100">-->
+<!--                        <nav class="navbar h-100 navbar-expand-lg">-->
+<!--                            &lt;!&ndash; Logo Area  &ndash;&gt;-->
+<!--                            <div class="collapse navbar-collapse" id="medilifeMenu">-->
+<!--                                &lt;!&ndash; Menu Area &ndash;&gt;-->
+<!--                                <div class="search">-->
+<!--                                        <input type="text" class="search_text" name="keyboard" id="search_con" placeholder="输入关键字点击搜索">-->
+<!--                                </div>-->
+<!--                                <ul class="navbar-nav ml-auto">-->
+<!--                                    &lt;!&ndash;add   search&ndash;&gt;-->
+<!--                                    <Li class="nav-item">-->
+<!--                                        <a class="nav-link" href="javascript:void(0)">-->
+<!--                                            &lt;!&ndash;<img src="img/search.png">&ndash;&gt;-->
+<!--                                            <i class="icon-search"></i>-->
+<!--                                        </a>-->
+<!--                                        <script>-->
+<!--                                            $('.nav-item a').click(function (){-->
+<!--                                                var str=$('#search_con').val()-->
+<!--                                                window.location.href ="/list?type=4&pageN=1&dep=999&str="+  encodeURI(encodeURI(str))+"";-->
+<!--                                                $('#search_con').val("")-->
+<!--                                            });-->
+<!--                                        </script>-->
+<!--                                    </Li>-->
+<!--                                    <li class="nav-item active">-->
+<!--                                        <a class="nav-link" th:href="@{index}">Home </a>-->
+<!--                                    </li>-->
+<!--                                    <li class="nav-item">-->
+<!--                                        <a class="nav-link" th:href="@{/list(type=1,pageN=1,dep=999,str='')}">article</a>-->
+<!--                                    </li>-->
+<!--                                    <li class="nav-item">-->
+<!--                                        <a class="nav-link" th:href="@{/consulindex}">consult</a>-->
+<!--                                    </li>-->
+<!--                                </ul>-->
+<!--                            </div>-->
+<!--                        </nav>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div></div>-->
+<!--</header>-->
+<div th:replace="~{common/UserHeader::header(active='resource')}"></div>
+<div class="article_box clearfix">
+    <div class="left">
+
+        <div class="article_content_box clearfix">
+
+            <div class="article_article_title">
+                <h3>当前阅读
+                    <span>您当前的位置：<a th:href="@{/index}">首页></a><a href="#">列表页></a><a href="#">内容页</a></span>
+                </h3>
+            </div>
+
+            <div  class="article_content_title" th:utext="${disEntity.getName()}"></div>
+<!--            <div class="article_author_count_box clearfix">-->
+<!--                <i class="article_author_img" ><img src="./img/img.png" alt= "这是一张图片"></i>-->
+<!--                <p th:utext="${'发表时间：20xx-xx-xx'}"></p><p th:utext="${'浏览次数：xxx'}"></p>-->
+<!--            </div>-->
+            <div th:if="${type eq '1' or type eq '3' or type eq '4'}" class="article_content">
+                <img th:src="@{${'img/dis/dis'+(disEntity.getDisId()%1000+1000)+'.jpg'}}">
+                <p style="font-size: 18px" th:utext="${'<h4>简介</h4>'}"></p><br>
+                <p style="font-size: 18px" th:utext="${disEntity.getDesc()}"></p><br>
+                <p style="font-size: 18px" th:utext="${'<h4>病因</h4>'}"></p><br>
+                <p style="font-size: 18px" th:utext="${disEntity.getCause()}"></p><br>
+                <p style="font-size: 18px" th:utext="${'<h4>流行病学</h4>'}"></p><br>
+                <p style="font-size: 18px" th:utext="${disEntity.getEpidemiological()}"></p><br>
+                <p style="font-size: 18px" th:utext="${'<h4>发病机制</h4>'}"></p><br>
+                <p style="font-size: 18px" th:utext="${disEntity.getPathogenesis()}"></p><br>
+                <p style="font-size: 18px" th:utext="${'<h4>危险因素</h4>'}"></p><br>
+                <p style="font-size: 18px" th:text="${disEntity.getRiskFactor()}"></p><br>
+                <p style="font-size: 18px" th:utext="${'<h4>临床特征</h4>'}"></p><br>
+                <p style="font-size: 18px" th:utext="${disEntity.getClinFeatures()}"></p><br>
+                <p style="font-size: 18px" th:utext="${'<h4>自然病程</h4>'}"></p><br>
+                <p style="font-size: 18px" th:utext="${disEntity.getNatureDisCourse()}" ></p><br>
+                <p style="font-size: 18px" th:utext="${'<h3>诊断</h3>'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'<h4>鉴别诊断</h4>'}"></p><br>
+                <p style="font-size: 18px" th:utext="${disEntity.getDiagnosis()}"></p><br>
+                <p style="font-size: 18px" th:utext="${'<h4>病史</h4>'}"></p><br>
+                <p style="font-size: 18px" th:utext="${disEntity.getMedicalHistory()}"></p><br>
+                <p style="font-size: 18px" th:utext="${'<h4>体格检查</h4>'}"></p><br>
+                <p style="font-size: 18px" th:utext="${body}" th:each="body:${bodyCheck}"></p><br>
+                <p style="font-size: 18px" th:utext="${'<h4>辅助检查</h4>'}"></p><br>
+                <p style="font-size: 18px" th:utext="${assit}" th:each="assit:${assitCheck}"></p><br>
+                <p style="font-size: 18px" th:utext="${'<h4>潜在危险</h4>'}"></p><br>
+                <p style="font-size: 18px" th:utext="${disEntity.getPotentialDanger()}"></p><br>
+                <p style="font-size: 18px" th:utext="${'<h4>红色信号</h4>'}"></p><br>
+                <p style="font-size: 18px" th:utext="${disEntity.getRedSignal()}"></p><br>
+                <p style="font-size: 18px" th:utext="${'<h3>诊断</h3>'}"></p><br>
+                <p style="font-size: 18px" th:utext="${'<h4>一般临床处理</h4>'}"></p><br>
+                <p style="font-size: 18px" th:utext="${disEntity.getClinicalTreatment()}"></p><br>
+                <p style="font-size: 18px" th:utext="${'<h4>运动治疗</h4>'}"></p><br>
+                <p style="font-size: 18px" th:utext="${sport}" th:each="sport:${sport}"></p><br>
+                <p style="font-size: 18px" th:utext="${'<h4>物理疗法</h4>'}"></p><br>
+                <p style="font-size: 18px" th:utext="${physics}" th:each="physics:${physics}"></p><br>
+                <p style="font-size: 18px" th:utext="${'<h4>注射</h4>'}"></p><br>
+                <p style="font-size: 18px" th:utext="${disEntity.getInjection()}"></p><br>
+                <p style="font-size: 18px" th:utext="${'<h4>外科</h4>'}"></p><br>
+                <p style="font-size: 18px" th:utext="${disEntity.getSurgeon()}"></p><br>
+                <p style="font-size: 18px" th:utext="${'<h4>会诊</h4>'}"></p><br>
+                <p style="font-size: 18px" th:utext="${department.getName()}"th:each="department:${department}"></p><br>
+                <p style="font-size: 18px" th:utext="${'<h4>治疗并发症</h4>'}"></p><br>
+                <p style="font-size: 18px" th:utext="${disEntity.getComplication()}"></p><br>
+                <p style="font-size: 18px" th:utext="${'<h4>预后</h4>'}"></p><br>
+                <p style="font-size: 18px" th:utext="${disEntity.getAfterCure()}"></p><br>
+                <p style="font-size: 18px" th:utext="${'<h4>注意</h4>'}"></p><br>
+                <p style="font-size: 18px" th:utext="${disEntity.getAttention()}"></p><br>
+            </div>
+            <div th:if="${type eq '2'}" class="article_content">
+                <img th:src="@{${'img/eqp/eqp'+(disEntity.getEqpId())+'.jpg'}}">
+                <p style="font-size: 18px" th:utext="${'<h4>简介</h4>'}"></p><br>
+                <p style="font-size: 18px" th:utext="${disEntity.getDesc()}"></p><br>
+                <p style="font-size: 18px" th:utext="${'<h4>适用症</h4>'}"></p><br>
+                <p style="font-size: 18px" th:utext="${disEntity.getSuitDisease()}"></p><br>
+                <p style="font-size: 18px" th:utext="${'<h4>适用部位</h4>'}"></p><br>
+                <p style="font-size: 18px" th:utext="${disEntity.getSuitPart()}"></p><br>
+                <p style="font-size: 18px" th:utext="${'<h4>适用训练</h4>'}"></p><br>
+                <p style="font-size: 18px" th:utext="${disEntity.getSuitTrain()}"></p><br>
+
+            </div>
+
+        </div>
+
+    </div>
+<!--    <div th:replace="~{common/sidebar::side}"></div>-->
+</div>
+
+</body>
+
+</html>

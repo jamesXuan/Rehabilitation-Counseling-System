@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Title  -->
+    <title>recommendation</title>
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="style.css">
+    <script th:src="@{/js/jquery/jquery-2.2.4.min.js}"></script>
+</head>
+<body>
+
+<div th:replace="~{common/UserHeader}"></div>
+<div class="article_box clearfix">
+    <div class="left">
+
+        <div class="article_content_box clearfix">
+
+            <div class="article_article_title">
+                <h3>每日推荐
+                    <span>您当前的位置：<a th:href="@{/index}">首页></a><a href="#">列表页></a><a href="#">内容页</a></span>
+                </h3>
+            </div>
+
+            <div   class="article_content_title" th:utext="${art.getArticle_title()}"></div>
+            <div class="article_author_count_box clearfix" style="display: flex">
+                <i class="article_author_img"><img src="./img/img.png" alt= "这是一张图片"></i>
+                <span th:utext="${art.getArticle_author()}" style="text-align: left;flex: 1"id="time"></span><span th:utext="${art.getArticle_time()}" style="text-align: right;flex: 1"></span>
+            </div>
+            <div class="article_content" id="context">
+                <textarea style="display:none;" placeholder="markdown" th:text="${art.getArticle_context()}"></textarea>
+            </div>
+
+        </div>
+
+
+
+    </div>
+<!--    <div th:replace="~{common/sidebar::side}"></div>-->
+</div>
+<!--固定editormd依赖！ -->
+<link rel="stylesheet" th:href="@{/editormd/css/editormd.preview.css}"/>
+<script th:src="@{/editormd/jquery.min.js}"></script>
+<script th:src="@{/editormd/lib/marked.min.js}"></script>
+<script th:src="@{/editormd/lib/prettify.min.js}"></script>
+<script th:src="@{/editormd/lib/raphael.min.js}"></script>
+<script th:src="@{/editormd/lib/underscore.min.js}"></script>
+<script th:src="@{/editormd/lib/sequence-diagram.min.js}"></script>
+<script th:src="@{/editormd/lib/flowchart.min.js}"></script>
+<script th:src="@{/editormd/lib/jquery.flowchart.min.js}"></script>
+<script th:src="@{/editormd/editormd.js}"></script>
+
+<script type="text/javascript">
+    var testEditor;
+    $(function () {
+        // 绑定我们要渲染页面的 div
+        testEditor = editormd.markdownToHTML("context", {//注意：这里是上面DIV的id
+            htmlDecode: "style,script,iframe",
+            emoji: true,
+            taskList: true,
+            tocm: true,
+            tex: true, // 默认不解析
+            flowChart: true, // 默认不解析
+            sequenceDiagram: true, // 默认不解析
+            codeFold: true
+        });
+    });
+</script>
+
+</body>
+</html>

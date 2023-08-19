@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<header class="header-area" th:fragment="header">
+    <!-- Main Header Area -->
+    <div id="stickyHeader-sticky-wrapper" class="sticky-wrapper is-sticky" style="height: 101px;"><div class="main-header-area"  style="width: 1600px; z-index: inherit;background-color: #8f9599">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12 h-100">
+                    <div class="main-menu h-100">
+                        <nav class="navbar h-100 navbar-expand-lg">
+                            <!-- Logo Area  -->
+                            <div class="collapse navbar-collapse" id="medilifeMenu">
+                                <!-- Menu Area -->
+                                <div class="search">
+                                    <input  type="text" class="search_text" name="keyboard" id="search_con"  placeholder="输入疾病关键字">
+                                </div>
+                                <ul class="navbar-nav ml-auto">
+                                    <!--add   search-->
+                                    <Li class="nav-item">
+                                        <a class="nav-link" href="javascript:void(0)">
+                                            <!--<img src="img/search.png">-->
+                                            <i class="icon-search"></i>
+                                        </a>
+                                        <script>
+                                            $('.nav-item a').click(function (){
+                                                var str=$('#search_con').val()
+                                                window.location.href ="/list?type=4&pageN=1&dep=999&str="+  encodeURI(encodeURI(str))+"";
+                                                $('#search_con').val("")
+                                            });
+                                        </script>
+                                    </Li>
+                                    <li th:class="${active=='home'?'nav-item active':'nav-item'}">
+                                        <a class="nav-link" th:href="@{index}">首页</a>
+                                    </li>
+                                    <li th:class="${active=='article'?'nav-item active':'nav-item'}">
+                                        <a class="nav-link" th:href="@{/list(type=5,pageN=1,dep=999,str='')}">文章</a>
+                                    </li>
+                                    <li th:class="${active=='consult'?'nav-item active':'nav-item'}">
+                                        <a class="nav-link" th:href="@{/toconsulindex}">咨询</a>
+                                    </li>
+                                    <li th:class="${active=='disease'?'nav-item active':'nav-item'}">
+                                        <a class="nav-link" th:href="@{/list(type=1,pageN=1,dep=999,str='')}">疾病</a>
+                                    </li>
+                                    <li th:class="${active=='equiment'?'nav-item active':'nav-item'}">
+                                        <a class="nav-link" th:href="@{/list(type=2,pageN=1,dep=999,str='')}">设备</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" th:href="@{/tologin}" th:if="${#httpServletRequest.getSession().getAttribute('usersession')==null}" >登录</a>
+                                    </li>
+                                    <li class="nav-item" th:if="${#httpServletRequest.getSession().getAttribute('usersession')!=null}" >
+                                        <a class="nav-link" th:href="@{/userinfo(User_name=${#httpServletRequest.getSession().getAttribute('usersession')})}" th:text="${#httpServletRequest.getSession().getAttribute('usersession')}"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div></div>
+</header>
+</html>

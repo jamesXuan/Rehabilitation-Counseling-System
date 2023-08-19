@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruyi.dao.WelcomeMapper">
+    <select id="getWelinfo" resultType="Welcome">
+        select * from welcome
+    </select>
+
+    <insert id="insetWelInfo" parameterType="Welcome">
+        insert into
+        welcome(Welcome_Id,Welcome_titleone,Welcome_titletwo,Welcome_context,Welcome_img)
+        values(#{Welcome_Id},#{Welcome_titleone},#{Welcome_titletwo},#{Welcome_context},#{Welcome_img})
+    </insert>
+
+    <update id="updateWelInfo" parameterType="Welcome">
+        update welcome
+        set Welcome_titleone=#{Welcome_titleone},Welcome_titletwo=#{Welcome_titletwo},Welcome_context=#{Welcome_context},Welcome_img=#{Welcome_img}
+        where Welcome_Id=#{Welcome_Id}
+    </update>
+
+    <delete id="deleteWelInfo" parameterType="String">
+        delete from welcome where Welcome_Id=#{Welcome_Id}
+    </delete>
+
+    <select id="getWelById" resultType="Welcome">
+        select * from welcome where Welcome_Id=#{Welcome_Id}
+    </select>
+
+    <select id="getWelBytitle" resultType="Welcome">
+        select * from welcome where Welcome_titleone=#{Welcome_titleone}
+    </select>
+</mapper>

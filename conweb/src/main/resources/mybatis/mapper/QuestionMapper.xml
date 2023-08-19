@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruyi.dao.QuestionMapper">
+    <select id="getQuesinfo" resultType="Question" >
+        select * from questionmodel
+    </select>
+
+    <insert id="insetQuesInfo" parameterType="Question">
+        insert into
+        questionmodel(Question_Id,Question_type,Question_feature)
+        values(#{Question_Id},#{Question_type},#{Question_feature})
+    </insert>
+
+    <select id="getQuesInfoBytype" resultType="Question">
+            select * from questionmodel where Question_type=#{Question_type}
+    </select>
+
+    <select id="getQuesInfoById" resultType="Question">
+        select * from questionmodel where Question_Id=#{Question_Id}
+    </select>
+
+
+    <update id="updateQuesInfo" parameterType="question">
+        update questionmodel
+        set Question_type=#{Question_type},Question_feature=#{Question_feature}
+        where Question_Id=#{Question_Id}
+    </update>
+
+    <delete id="deleteQuesInfo" parameterType="String">
+        delete from questionmodel where Question_Id=#{Question_Id}
+    </delete>
+</mapper>

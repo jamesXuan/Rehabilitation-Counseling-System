@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{common/adminHeader::adminheader(active='adminIndex')}"></div>
+
+
+<div class="row">
+    <div class="col-md-4 column">
+        <a class="btn btn-primary" th:href="@{/toregister}">新增用户</a>
+        <a class="btn btn-primary" th:href="@{/adminIndex}">显示全部用户</a>
+    </div>
+    <div class="col-md-4 column">
+        <form method="post" th:action="@{/queryuser}" style="float: right">
+            <input  class="column-resize-line" type="text" placeholder="请输入要查询的用户名称" name="username">
+            <input type="submit" value="查询" class="btn btn-primary">
+        </form>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        <table class="table table-hover table-striped">
+            <thead>
+            <tr>
+                <th>用户Id</th>
+                <th>用户名</th>
+                <th>性别</th>
+                <th>年龄</th>
+                <th>偏好</th>
+                <th>病史</th>
+                <th>过敏源</th>
+                <th>密码</th>
+                <th>Tel</th>
+                <th>Email</th>
+                <th>头像</th>
+                <th>备注</th>
+            </tr>
+            </thead>
+
+                <tbody th:each="user:${userlist}">
+                <tr>
+                    <td th:text="${user.getUser_Id()}"></td>
+                    <td th:text="${user.getUser_name()}"></td>
+                    <td th:text="${user.getUser_sex()}"></td>
+                    <td th:text="${user.getUser_age()}"></td>
+                    <td th:text="${user.getUser_preference()}"></td>
+                    <td th:text="${user.getUser_medicalhistory()}"></td>
+                    <td th:text="${user.getUser_allergyhistory()}"></td>
+                    <td th:text="${user.getUser_password()}"></td>
+                    <td th:text="${user.getUser_phonenumber()}"></td>
+                    <td th:text="${user.getUser_email()}"></td>
+                    <td th:text="${user.getUser_head()}"></td>
+                    <td th:text="${user.getUser_note()}"></td>
+                    <td>
+                        <a th:href="@{/toupdateuser(ID=${user.getUser_Id()},type='user')}">修改</a> | <a th:href="@{/deleteuser(User_Id=${user.getUser_Id()})}">删除</a>
+                    </td>
+                </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

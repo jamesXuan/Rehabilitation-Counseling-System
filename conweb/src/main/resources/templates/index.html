@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Title  -->
+    <title>康复医疗咨询系统</title>
+    <!-- Style CSS -->
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <script th:src="@{/js/jquery/jquery-2.2.4.min.js}"></script>
+    <script th:src="@{/js/text.js}"></script>
+</head>
+
+<body>
+<!-- ***** Header Area Start ***** -->
+<header class="header-area">
+    <!-- Main Header Area -->
+    <div id="stickyHeader-sticky-wrapper" class="sticky-wrapper is-sticky" style="height: 101px;"><div class="main-header-area" id="stickyHeader" style="width: 1600px; position: fixed; top: 0px; z-index: inherit;">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12 h-100">
+                    <div class="main-menu h-100">
+                        <nav class="navbar h-100 navbar-expand-lg">
+                            <!-- Logo Area  -->
+                            <div class="collapse navbar-collapse" id="medilifeMenu">
+                                <!-- Menu Area -->
+                                <div class="search">
+                                        <input type="text" class="search_text" name="keyboard" id="search_con" placeholder="输入关键字点击搜索">
+                                </div>
+                                <ul class="navbar-nav ml-auto">
+                                    <!--add   search-->
+
+                                    <Li class="nav-sear">
+                                        <a class="nav-link" href="javascript:void(0)">
+                                            <!--<img src="img/search.png">-->
+                                            <i class="icon-search"></i>
+                                        </a>
+                                        <script>
+                                            $('.nav-sear a').click(function (){
+                                                var str=$('#search_con').val()
+                                                window.location.href ="/list?type=4&pageN=1&dep=999&str="+  encodeURI(encodeURI(str))+"";
+                                                $('#search_con').val("")
+                                            });
+                                        </script>
+                                    </Li>
+                                    <li class="nav-item active">
+                                        <a class="nav-link" th:href="@{index}">首页</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" th:href="@{/list(type=5,pageN=1,dep=999,str='')}">文章</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" th:href="@{/toconsulindex}">咨询</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" th:href="@{/list(type=1,pageN=1,dep=999,str='')}">疾病</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" th:href="@{/list(type=2,pageN=1,dep=999,str='')}">设备</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" th:href="@{/tologin}" th:if="${#httpServletRequest.getSession().getAttribute('usersession')==null}" >登录</a>
+                                    </li>
+
+                                    <li class="nav-item" th:if="${#httpServletRequest.getSession().getAttribute('usersession')!=null}" >
+                                        <a class="nav-link" th:href="@{/userinfo(User_name=${#httpServletRequest.getSession().getAttribute('usersession')})}" th:text="${#httpServletRequest.getSession().getAttribute('usersession')}"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div></div>
+</header>
+
+<!-- ***** Header Area End ***** -->
+
+<!-- ***** Hero Area Start ***** -->
+<section class="hero-area">
+    <div class="hero-slides owl-carousel">
+        <!-- 第一张图片 -->
+        <div class="single-hero-slide bg-img bg-overlay-white" th:style="'background-image: url('+${list.getWelcome_img()}+')'" th:each="list:${nav_list}">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12">
+                        <div  class="first-hero-slides-content">
+                            <div data-animation="fadeInUp" data-delay="100ms" th:utext="${list.getWelcome_titleone()}" style="color: black;font-size: 32px;font-weight: bold;opacity:30%;"></div>
+                            <div data-animation="fadeInUp" data-delay="400ms" th:utext="${list.getWelcome_context()}" style="color: black;opacity:50%"></div>
+<!--                            <a href="#" name="dis" class="btn medilife-btn mt-50" data-animation="fadeInUp" data-delay="700ms">more<span>+</span></a>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 第二张图片 -->
+<!--        <div class="single-hero-slide bg-img bg-overlay-white" style="background-image: url(img/hero1.jpg);">-->
+<!--            <div class="container h-100">-->
+<!--                <div class="row h-100 align-items-center">-->
+<!--                    <div class="col-12">-->
+<!--                        <div class="second-hero-slides-content">-->
+<!--                            <span data-animation="fadeInUp" data-delay="100ms" th:utext="${two_turntitle}"></span>-->
+<!--                            <div data-animation="fadeInUp" data-delay="400ms" th:utext="${two_turncontext}"></div>-->
+<!--                            <a href="#" class="btn medilife-btn mt-50" data-animation="fadeInUp" data-delay="700ms">more<span>+</span></a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+        <!-- 第三张图片 -->
+<!--        <div class="single-hero-slide bg-img bg-overlay-white" style="background-image: url(img/hero1.jpg);">-->
+<!--            <div class="container h-100">-->
+<!--                <div class="row h-100 align-items-center">-->
+<!--                    <div class="col-12">-->
+<!--                        <div class="third-hero-slides-content">-->
+<!--                            <span data-animation="fadeInUp" data-delay="100ms" th:utext="${three_turntitle}"></span>-->
+<!--                            <div data-animation="fadeInUp" data-delay="400ms" th:utext="${three_turncontext}"></div>-->
+<!--                            <a href="#" class="btn medilife-btn mt-50" data-animation="fadeInUp" data-delay="700ms">more<span>+</span></a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+    </div>
+</section>
+<!-- ***** Hero Area End ***** -->
+
+
+<!-- ***** About Us Area Start ***** -->
+<section class="medica-about-us-area section-padding-100-20">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-4">
+                <div class="medica-about-content">
+                    <div th:utext="${module_one}"></div>
+                    <p th:text="${module_one_desc}"></p>
+                    <a th:href="@{/list(type=1,pageN=1,dep=999,str='')}" class="btn medilife-btn mt-50">更多<span>+</span></a>
+                </div>
+            </div>
+            <div class="col-12 col-lg-8">
+                <div class="row">
+                    <!-- Single Service Area -->
+                    <div class="col-12 col-sm-6" th:each="dis:${dis}">
+                        <div class="single-service-area d-flex">
+                            <div class="service-icon">
+                                <!--图标见https://icomoon.io/-->
+                                <i class="icon-list2"></i>
+                            </div>
+                            <div class="one-service-content">
+                                <div ><a th:href="@{/article(type=1,dis=${dis.getName()},eqp='')}"><h5 th:text="${dis.getName()}"></h5></a></div>
+                                <p th:utext="${dis.getDesc()}"></p>
+                            </div>
+                        </div>
+                    </div>
+<!--                    &lt;!&ndash; Single Service Area &ndash;&gt;-->
+<!--                    <div class="col-12 col-sm-6">-->
+<!--                        <div class="single-service-area d-flex">-->
+<!--                            <div class="service-icon">-->
+<!--                                <i class="icon-list2"></i>-->
+<!--                            </div>-->
+<!--                            <div class="two-service-content">-->
+<!--                                <div th:utext="${dis1}"></div>-->
+<!--                                <p th:utext="${dis_desc1}">文本</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash; Single Service Area &ndash;&gt;-->
+<!--                    <div class="col-12 col-sm-6">-->
+<!--                        <div class="single-service-area d-flex">-->
+<!--                            <div class="service-icon">-->
+<!--                                <i class="icon-list2"></i>-->
+<!--                            </div>-->
+<!--                            <div class="three-service-content">-->
+<!--                                <div th:utext="${dis2}"></div>-->
+<!--                                <p th:utext="${dis_desc2}">文本</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash; Single Service Area &ndash;&gt;-->
+<!--                    <div class="col-12 col-sm-6">-->
+<!--                        <div class="single-service-area d-flex">-->
+<!--                            <div class="service-icon">-->
+<!--                                <i class="icon-list2"></i>-->
+<!--                            </div>-->
+<!--                            <div class="four-service-content">-->
+<!--                                <div th:utext="${dis3}"></div>-->
+<!--                                <p th:utext="${dis_desc3}">文本</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ***** About Us Area End ***** -->
+
+<!-- ***** Cool Facts Area Start ***** -->
+<section class="medilife-cool-facts-area section-padding-100-0">
+    <div class="container">
+        <div class="row">
+            <!-- Single Cool Fact-->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="single-cool-fact-area text-center mb-100">
+                    <i class="icon-stats-bars"></i>
+                    <h2><span  th:text="${dis_data}" class="counter"></span></h2>
+                    <h6><span th:utext="${dis_count}"></span></h6>
+<!--                    <p th:utext="${dis_context}"></p>-->
+                </div>
+            </div>
+            <!-- Single Cool Fact-->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="single-cool-fact-area text-center mb-100">
+                    <i class="icon-stats-bars2"></i>
+                    <h2><span th:utext="${visit_data}" class="counter"></span>k</h2>
+                    <h6><span th:utext="${visit_count}"></span></h6>
+<!--                    <p th:utext="${visit_context}"></p>-->
+                </div>
+            </div>
+            <!-- Single Cool Fact-->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="single-cool-fact-area text-center mb-100">
+                    <i class="icon-pie-chart"></i>
+                    <h2><span th:text="${xx_data}" class="counter"></span></h2>
+                    <h6><span th:utext="${xx_count}"></span></h6>
+<!--                    <p th:utext="${xx_context}"></p>-->
+                </div>
+            </div>
+            <!-- Single Cool Fact-->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="single-cool-fact-area text-center mb-100">
+                    <i class="icon-stats-dots"></i>
+                    <h2><span th:utext="${xxx_data}" class="counter"></span></h2>
+                    <h6><span th:utext="${xxx_count}"></span></h6>
+<!--                    <p th:utext="${xxx_context}"></p>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ***** Cool Facts Area End ***** -->
+
+<!-- ***** Gallery Area Start ***** -->
+<div class="medilife-gallery-area owl-carousel">
+    <!-- Single Gallery Item -->
+    <div class="single-gallery-item">
+        <img th:src="@{/img/recover_equipment/OTzhuo.jpg}" alt="" >
+        <div class="view-more-btn">
+            <a th:href="@{/list(type=2,pageN=1,dep=999,str='')}" >See More +</a>
+        </div>
+    </div>
+
+    <!-- Single Gallery Item -->
+    <div class="single-gallery-item">
+        <img th:src="@{/img/recover_equipment/PTdeng.jpg}" alt="">
+        <div class="view-more-btn">
+            <a th:href="@{/list(type=2,pageN=1,dep=999,str='')}" >See More +</a>
+        </div>
+    </div>
+    <!-- Single Gallery Item -->
+    <div class="single-gallery-item">
+        <img th:src="@{/img/recover_equipment/jiantaiju.jpg}" alt="">
+        <div class="view-more-btn">
+            <a th:href="@{/list(type=2,pageN=1,dep=999,str='')}" >See More +</a>
+        </div>
+    </div>
+
+    <!-- Single Gallery Item -->
+    <div class="single-gallery-item">
+        <img th:src="@{/img/recover_equipment/jiaozhengjing.jpg}" alt="">
+        <div class="view-more-btn">
+            <a th:href="@{/list(type=2,pageN=1,dep=999,str='')}" >See More +</a>
+        </div>
+    </div>
+</div>
+<!-- ***** Gallery Area End ***** -->
+
+<!-- ***** Features Area Start ***** -->
+<!--每日推荐-->
+<div class="medilife-features-area section-padding-100">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12 col-lg-6">
+                <div class="features-content">
+                    <h2><span th:utext="${Daily_Recommendation}"></span></h2>
+                    <p th:utext="${Recommendation_context}"></p>
+                    <a th:href="@{/recommendation(title='18eb4c448c4449569ecf8f6033234c50')}" class="btn medilife-btn mt-50">了解详情 <span>+</span></a>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="features-thumbnail">
+                    <img th:src="@{/img/recommendation.jpg}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ***** Blog Area Start ***** -->
+<div class="medilife-blog-area section-padding-100-0">
+    <div class="container">
+        <div class="row">
+            <!-- Single Blog Area -->
+            <div class="one-blog col-12 col-md-6 col-lg-4">
+                <div class="single-blog-area mb-100">
+                    <!-- Post Thumbnail -->
+                    <div class="blog-post-thumbnail">
+                        <img th:src="@{/img/hero1.jpg}" alt="">
+                        <!-- Post Date -->
+                        <div class="post-date">
+                            <a href="#" name="date" th:utext="${one_blog_date}"></a>
+                        </div>
+                    </div>
+                    <!-- Post Content -->
+                    <div class="post-content">
+                        <div class="post-author">
+                            <a href="#"><img th:src="@{/img/img.png}" alt=""></a>
+                        </div>
+<!--                        <a th:href="@{consulHistory(type=1)}" class="headline" name="title" th:utext="${one_blog_title}"></a>-->
+                        <a th:href="@{consulHistory(type=1)}" class="headline" name="title" th:utext="${one_blog_title}"></a>
+                        <p th:utext="${one_blog_context}"></p>
+                    </div>
+                </div>
+            </div>
+            <!-- Single Blog Area -->
+            <div class="two-blog col-12 col-md-6 col-lg-4">
+                <div class="single-blog-area mb-100">
+                    <!-- Post Thumbnail -->
+                    <div class="blog-post-thumbnail">
+                        <img th:src="@{/img/hero1.jpg}" alt="">
+                        <!-- Post Date -->
+                        <div class="post-date">
+                            <a href="#" name="date" th:utext="${two_blog_date}"></a>
+                        </div>
+                    </div>
+                    <!-- Post Content -->
+                    <div class="post-content">
+                        <div class="post-author">
+                            <a href="#"><img th:src="@{/img/img.png}" alt=""></a>
+                        </div>
+                        <a th:href="@{consulHistory(type=2)}" class="headline" name="title" th:utext="${two_blog_title}"></a>
+                        <p th:utext="${two_blog_context}"></p>
+                    </div>
+                </div>
+            </div>
+            <!-- Single Blog Area -->
+            <div class="three-blog col-12 col-md-6 col-lg-4">
+                <div class="single-blog-area mb-100">
+                    <!-- Post Thumbnail -->
+                    <div class="blog-post-thumbnail">
+                        <img th:src ="@{/img/hero1.jpg}" alt="">
+                        <!-- Post Date -->
+                        <div class="post-date">
+                            <a href="#" name="date" th:utext="${three_blog_date}"></a>
+                        </div>
+                    </div>
+                    <!-- Post Content -->
+                    <div class="post-content">
+                        <div class="post-author">
+                            <a href="#"><img th:src="@{/img/img.png}" alt=""></a>
+                        </div>
+                        <a th:href="@{/consulHistory(type=3)}" class="headline" name="title" th:utext="${three_blog_title}"></a>
+                        <p th:utext="${three_blog_context}" style="height: 60px;overflow: hidden;text-overflow: ellipsis"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ***** Blog Area End ***** -->
+
+<!-- jQuery (Necessary for All JavaScript Plugins) -->
+<script th:src="@{js/jquery/jquery-2.2.4.min.js}"></script>
+<!-- Popper js -->
+<script th:src="@{js/popper.min.js}"></script>
+<!-- Bootstrap js -->
+<script th:src="@{js/bootstrap.min.js}"></script>
+<!-- Plugins js -->
+<script th:src="@{js/plugins.js}"></script>
+<!-- Active js -->
+<script th:src="@{js/active.js}"></script>
+
+</body>
+<div th:replace="~{/common/footer}"></div>
+</html>

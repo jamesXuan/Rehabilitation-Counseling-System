@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<!--用户修改-->
+<div class="container" th:if="${type=='user'}">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="page-header">
+                <h1>
+                    <small>用户修改</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+    <form th:action="@{/updateuser(type='user')}" method="post">
+        <input type="hidden" name="User_Id" th:value="${User.getUser_Id()}">
+        <div class="form-group">
+            <label>用户名：</label>
+            <input type="text" class="form-control" name="User_name" required th:value="${User.getUser_name()}">
+<!--            <p style="color: red" th:text="${User.getUser_name()}" th:if="${not #strings.isEmpty(${User.getUser_name()})}"></p>-->
+        </div>
+        <div class="form-group">
+            <label>密码：</label>
+            <input type="password" class="form-control" name="User_password" th:value="${User.getUser_password()}" required>
+<!--            <p style="color: red" th:text="${User.getUser_password()}" th:if="${not #strings.isEmpty(${User.getUser_password()})}"></p>-->
+        </div>
+        <div class="form-group">
+            <label>性别：</label>
+            <input type="radio" value="男" name="User_sex" checked/>男
+            <input type="radio" value="女" name="User_sex"/>女
+        </div>
+        <div class="form-group">
+            <label>年龄：</label>
+            <input type="number" name ="User_age" max="120" min="1" step="1" required th:value="${User.getUser_age()}">
+        </div>
+        <div class="form-group">
+            <label>Tel：</label>
+            <input type="text" class="form-control" name="User_phonenumber" required th:value="${User.getUser_phonenumber()}">
+<!--            <p style="color: red" th:text="${phonemsg}" th:if="${not #strings.isEmpty(phonemsg)}"></p>-->
+        </div>
+        <div class="form-group">
+            <label>Email：</label>
+            <input type="text" class="form-control" name="User_email" required th:value="${User.getUser_email()}">
+<!--            <p style="color: red" th:text="${emailmsg}" th:if="${not #strings.isEmpty(emailmsg)}"></p>-->
+        </div>
+        <div class="form-group">
+            <label>偏好：</label>
+            <textarea class="form-control" name="User_preference" cols="50" rows="5" th:text="${User.getUser_preference()}"></textarea>
+        </div>
+        <div class="form-group">
+            <label>疾病史：</label>
+            <textarea class="form-control" name="User_medicalhistory" cols="50" rows="5" th:text="${User.getUser_medicalhistory()}"></textarea>
+        </div>
+        <div class="form-group">
+            <label>过敏源：</label>
+            <textarea class="form-control" name="User_allergyhistory" cols="50" rows="5" th:text="${User.getUser_allergyhistory()}"></textarea>
+        </div>
+        <div class="form-group">
+            <label>note：</label>
+            <textarea class="form-control" name="User_note" cols="50" rows="5" th:text="${User.getUser_note()}"></textarea>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="form-control" value="修改">
+        </div>
+    </form>
+</div>
+<!--答案修改-->
+<div class="container" th:if="${type=='answer'}">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="page-header">
+                <h1>
+                    <small>答案修改</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+    <form th:action="@{/updateuser(type='answer')}" method="post">
+        <input type="hidden" name="Answer_Id" th:value="${Answer.getAnswer_Id()}">
+        <div class="form-group">
+            <label>答案类型：</label>
+            <input type="text" class="form-control" name="Answer_type" required th:value="${Answer.getAnswer_type()}">
+            <!--            <p style="color: red" th:text="${User.getUser_name()}" th:if="${not #strings.isEmpty(${User.getUser_name()})}"></p>-->
+        </div>
+        <div class="form-group">
+            <label>答案内容：</label>
+            <input type="text" class="form-control" name="Answer_example" th:value="${Answer.getAnswer_example()}" required>
+            <!--            <p style="color: red" th:text="${User.getUser_password()}" th:if="${not #strings.isEmpty(${User.getUser_password()})}"></p>-->
+        </div>
+        <div class="form-group">
+            <label>答案风格：</label>
+            <input type="text" class="form-control" name="Answer_style" required th:value="${Answer.getAnswer_style()}">
+            <!--            <p style="color: red" th:text="${User.getUser_name()}" th:if="${not #strings.isEmpty(${User.getUser_name()})}"></p>-->
+        </div>
+        <div class="form-group">
+            <input type="submit" class="form-control" value="修改">
+        </div>
+    </form>
+</div>
+<!--问题修改-->
+<div class="container" th:if="${type=='question'}">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="page-header">
+                <h1>
+                    <small>问题修改</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+    <form th:action="@{/updateuser(type='question')}" method="post">
+        <input type="hidden" name="Question_Id" th:value="${question.getQuestion_Id()}">
+        <div class="form-group">
+            <label>问题类型：</label>
+            <input type="text" class="form-control" name="Question_type" required th:value="${question.getQuestion_type()}">
+            <!--            <p style="color: red" th:text="${User.getUser_name()}" th:if="${not #strings.isEmpty(${User.getUser_name()})}"></p>-->
+        </div>
+        <div class="form-group">
+            <label>问题特征词：</label>
+            <input type="text" class="form-control" name="Question_feature" th:value="${question.getQuestion_feature()}" required>
+            <!--            <p style="color: red" th:text="${User.getUser_password()}" th:if="${not #strings.isEmpty(${User.getUser_password()})}"></p>-->
+        </div>
+        <div class="form-group">
+            <input type="submit" class="form-control" value="修改">
+        </div>
+    </form>
+</div>
+<!--页面修改-->
+<div class="container" th:if="${type=='welcome'}">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="page-header">
+                <h1>
+                    <small>欢迎页修改</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+    <form th:action="@{/updateuser(type='welcome')}" method="post">
+        <input type="hidden" name="Welcome_Id" th:value="${welcome.getWelcome_Id()}">
+        <div class="form-group">
+            <label>主标题：</label>
+            <input type="text" class="form-control" name="Welcome_titleone" required th:value="${welcome.getWelcome_titleone()}">
+            <!--            <p style="color: red" th:text="${User.getUser_name()}" th:if="${not #strings.isEmpty(${User.getUser_name()})}"></p>-->
+        </div>
+        <div class="form-group">
+            <label>次标题：</label>
+            <input type="text" class="form-control" name="Welcome_titletwo" th:value="${welcome.getWelcome_titletwo()}" required>
+            <!--            <p style="color: red" th:text="${User.getUser_password()}" th:if="${not #strings.isEmpty(${User.getUser_password()})}"></p>-->
+        </div>
+        <div class="form-group">
+            <label>内容：</label>
+            <textarea class="form-control" name="Welcome_context" cols="50" rows="5" th:text="${welcome.getWelcome_context()}"></textarea>
+        </div>
+        <div class="form-group">
+            <label>图片：</label>
+            <input type="text" class="form-control" name="Welcome_img" th:value="${welcome.getWelcome_img()}" required>
+            <!--            <p style="color: red" th:text="${User.getUser_password()}" th:if="${not #strings.isEmpty(${User.getUser_password()})}"></p>-->
+        </div>
+        <div class="form-group">
+            <input type="submit" class="form-control" value="修改">
+        </div>
+    </form>
+</div>
+</body>
+</html>

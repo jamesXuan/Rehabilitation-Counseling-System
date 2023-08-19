@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div class="right" th:fragment="side">
+
+    <!--本栏推荐-->
+    <div class="right_box tuijian_moban">
+        <h3>疾病科室</h3>
+        <div>
+            <ul>
+                <li th:each="department:${department}" ><a th:text="${department.getName()}" th:href="@{/list(type=3,pageN=1,dep=${department.getName()},str='')}"></a></li>
+            </ul>
+        </div>
+    </div>
+    <!--友情链接-->
+    <div class="right_box youlian_list">
+        <h3>每日推荐</h3>
+        <div>
+            <ul>
+                <li th:each="article:${article}"><a th:text="${article.getArticle_title()}" th:href="@{/recommendation(title=${article.getArticle_id()})}"></a></li>
+            </ul>
+        </div>
+    </div>
+    <!--点击排行-->
+    <div class="right_box tuijian_moban">
+        <h3>咨询记录</h3>
+        <div>
+            <ul>
+                <li><a th:href="@{/consulHistory(type=1)}">颈椎病</a></li>
+                <li><a th:href="@{/consulHistory(type=2)}">年轻运动员腰背痛</a></li>
+                <li th:each="consult:${consult}"><a th:href="@{/consulHistory(type=3)}" th:text="${consult.getRecord_title()}"></a></li>
+
+            </ul>
+        </div>
+    </div>
+    <!--微信二维码部分-->
+    <div class="self_erweima right_box">
+        <h3>微信二维码</h3>
+        <div>
+            <img th:src="@{/img/other/wechat.jpg}">
+        </div>
+    </div>
+    <!--qq二维码部分-->
+    <div class="self_erweima right_box">
+        <h3>QQ二维码</h3>
+        <div>
+            <img th:src="@{/img/other/qq.jpg}">
+        </div>
+    </div>
+
+
+
+
+
+</div>
+</html>
